@@ -6,7 +6,7 @@ sex = titanic.sex;
 age = titanic.age;
 survived = titanic.survived;
 
-sex = string(sex)
+sex = string(sex);
 s = ismember(sex, 'male');
 n = length(name);
 label = {'0-10', '11-20', '21-30', '31-40', '41-50', '51-60', '61-70', '71-80'};
@@ -68,6 +68,12 @@ X = [class s age];
 X_str = {'class', 'sex', 'age', 'survival_rate'};
 model = fitglm(X , survived,'VarNames',X_str)
 
-yhat = predict(model, X);
+yhat = round(predict(model, X));
 conf_mat = confusionmat(survived, yhat);
+TP = conf_mat(1,1);
+FP = conf_mat(1,2);
+FN = conf_mat(2,1);
+TN = conf_mat(2,2);
+
+accuracy = (TP + TN) / (TP + FN + FP + TN)
 

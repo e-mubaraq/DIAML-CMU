@@ -17,7 +17,7 @@ X_Str = {'AGE', 'SEX', 'BMI', 'BP', 'S1', 'S2', 'S3', 'S4', 'S5', 'S6', 'Y'};
 
 model1 = fitlm(X, Y, 'VarNames',X_Str)
 
-%model2 = stepwiselm(X, Y,'VarNames',X_Str)
+model2 = stepwiselm(X, Y,'VarNames',X_Str)
 stepwise(X,Y)
 
 %% Q4

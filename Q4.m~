@@ -32,8 +32,8 @@ num_of_class2 = length(find(class == 2));
 num_of_class3 = length(find(class == 3));
 
 prob_of_c1_surv = num_c1_surv / num_of_class1
-prob_of_c2_surv = num_c2_surv / num_of_class2
-prob_of_c3_surv = num_c3_surv / num_of_class3
+prob_of_c2_surv = num_c2_surv / num_of_class1
+prob_of_c3_surv = num_c3_surv / num_of_class1
 
 
 num_age_0_10 = length(find(age_group == '0-10'));

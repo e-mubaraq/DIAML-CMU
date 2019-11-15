@@ -1,34 +1,26 @@
-manufacturing = xlsread('valueAddedManufacturing.xlsx'); % Investment in transport with private participation (current US$)
-transport_data = xlsread('transportInvestment.xlsx'); % Machinery and transport equipment (% of value added in manufacturing)
-date = ['2000';'2001';'2002';'2003';'2004';'2005';'2006';'2007';'2008';'2009';'2010';'2011';'2012';'2013';'2014';'2015']
-m_india = manufacturing(88,:)';
-t_india = transport_data(88,:)';
 
-corrCoeffic = corrcoef(t_india , m_india , 'Rows', 'Complete')
-years = datenum(date,'yyyy');
-y2020 = datenum('2020','yyyy');
+titanic = readtable('titanic3.csv');
+name = titanic.name;
+class = titanic.pclass;
+sex = titanic.sex;
+age = titanic.age;
+survived = titanic.survived;
 
-india_mdl = fitlm(t_india , m_india, 'VarNames',{'indiaTransport','indiaManufacturing'})
-plot(india_mdl)
-xlabel('Investment in transport')
-ylabel('Value added in manufacturing')
-title('Regression model for Transport investments and Value added in manufacturing')
+label = {'0-10', '11-20', '21-30', '31-40', '41-50', '51-60', '61-70', '71-80'};
+age_group = ordinal(age, label, [], [0, 11, 21, 31, 41, 51, 61, 71, 80]);
+s = ismember(sex, 'male');
 
-t_mdl = fitlm(years,t_india); % Linear regression model of my x against years
-t2020 = predict(t_mdl, y2020);
-manuf2020 = predict(india_mdl, y2020)
+class_c = categorical(class);
+s_c = categorical(sex);
+survived_c = categorical(survived);
+age_c = categorical(age);
+
+X = table(class_c, s_c, age_c);
+
+mdl = ClassificationKNN.fit(X,survived_c)
+
+rloss = resubLoss(mdl);
+cvmdl = crossval(mdl);
+kloss = kfoldLoss(cvmdl);
 
 
-airTr = xlsread('AirTraffic.xlsx');
-gdpData = xlsread('GDPperCapita2010');
-
-corrCoeffic = corrcoef(gdpData , airTr , 'Rows', 'Complete')
-
-air_mdl = fitlm(gdpData, airTr, 'VarNames',{'gdpPerCapita','airTrafficFreights'})
-
-plot(air_mdl)
-xlabel('GDP per capita');
-ylabel('Air Traffic Freights');
-title('Regression model for Air Traffic(Freights) and GDP per capita');
-
-[h,p,ci,stats] = ttest2(gdpData,airTr)

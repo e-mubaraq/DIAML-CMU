@@ -57,7 +57,7 @@ end
 plot(leafs,err);
 xlabel('Min Leaf Size');
 ylabel('cross-validated error');
-
+age_c = categorical(age);
 % The best leaf size is between about 20 and 50 observations per leaf.
 
 % Compare the near-optimal tree with at least 40 observations per leaf with the default tree, 

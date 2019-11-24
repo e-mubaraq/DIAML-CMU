@@ -196,7 +196,7 @@ xlabel('Number of nearest neighbors')
 ylabel('RMSE')
 title('Plot of MSE against number of nearest neighbors');
 
-Rsquared = sum(ythat - mean(yt)).^2 / sum(yt - mean(yt)).^2
+Rsquared = sum((ythat - nanmean(yt)).^2) / sum((yt - nanmean(yt)).^2)
 
 % linear regression model
 X_Str = {'fixed Acidity', 'Volatile Acidity', 'Citric Acid', 'Residual Sugar', 'Chlorides', 'Free Sulfur Dioxides', 'Total Sulfur Dioxide', 'Density', 'pH', 'Sulphates', 'Alcohol', 'Quality'};

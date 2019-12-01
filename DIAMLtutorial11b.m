@@ -44,7 +44,7 @@ H = dendrogram(tree,'Orientation','left','ColorThreshold','default');
 set(H,'LineWidth',2)
 
 
-% Hierarchical Clustering using dendrogram
+%% Hierarchical Clustering using dendrogram
 % Randomly generate the sample data.
 rng default; % For reproducibility
 X = [randn(100,2)*0.75+ones(100,2);
@@ -57,7 +57,7 @@ dendrogram(tree,0)
 % Select two clusters and plot
 c = cluster(tree,'maxclust',2);
 figure
-scatter(X(:,1),X(:,2),10,c)
+scatter(X(:,1),X(:,2),10,c) 
 
 
 % Clustering using k-means

@@ -33,6 +33,12 @@ presuberror = resubLoss(pctree);
 pcvctree = crossval(pctree);
 pcvloss = kfoldLoss(pcvctree);
 
+
+surv_hat = predict(ctree , x);
+%csvwrite('titanic.csv', grp2idx(surv_hat))
+writematrix([name surv_hat], 'titanic.csv')
+
+
 X = table(class_c, sex_c, age, survived_c);
 sz = size(X ,1);
 cv = cvpartition(sz, 'HoldOut', 0.3);
@@ -81,6 +87,7 @@ for k=1:length(K)
     % Examine the cross-validation loss, which is the average loss of each cross-validation model when predicting on data that is not used for training.
     cvloss(k) = kfoldLoss(cvmdl);
 end
+%surv_hat = predict(cvmdl , X);
 [rlossmin,irlossmin] = min(rloss);
 [cvlossmin,icvlossmin] = min(cvloss);
 kopt = K(icvlossmin);

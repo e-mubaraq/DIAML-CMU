@@ -20,7 +20,7 @@ plot(oobError(rfmodel));
 xlabel('Number of Grown Trees');
 ylabel('Out-of-Bag Classification Error');
 
-% ROC curve
+% 
 [fpr,tpr] = perfcurve(b5v.Y,Sfit(:,gPosition),'g');
 figure
 plot(fpr,tpr);

@@ -10,7 +10,6 @@ X = corrcov(AssetCovar);
 P1 = score(:,1);
 P2 = score(:,2);
 
-
 % Create scree plot.
 % Make a scree plot of the percent variability explained by each principal component.
 figure()
@@ -26,7 +25,6 @@ xlabel('Weight of Stocks');
 ylabel('Weight of Stocks');
 title('Weight of each stock for the first and second principal components')
 legend('First PC', 'Second PC');
-
 
 % Plot component scores.
 % Create a plot of the first two columns of score.

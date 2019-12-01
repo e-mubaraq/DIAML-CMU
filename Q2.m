@@ -18,7 +18,12 @@ cutoff = median([tree(end-2,3) tree(end-1,3)]);
 figure;
 dendrogram(tree,'ColorThreshold',cutoff, 'Labels', AssetList)
 xlabel('Stocks');
+ylabel('Values');
 
-c = cluster(tree,'maxclust',3);
+
 figure
-scatter(X(:,1),X(:,2),10,c,'d', 'filled') 
+scatter(X(:,1),X(:,2),10,c,'d', 'filled')
+text(X(:,1), X(:,2), AssetList)
+title('Scatter plot showing clusters of the DOW Jones Stock')
+ylabel('Correlation values');
+xlabel('Correlation values');
